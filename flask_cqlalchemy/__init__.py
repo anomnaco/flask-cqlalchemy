@@ -51,11 +51,6 @@ class CQLAlchemy(object):
         lazy_connect = app.config.get('CASSANDRA_LAZY_CONNECT', False)
         retry_connect = app.config.get('CASSANDRA_RETRY_CONNECT', False)
         setup_kwargs = app.config.get('CASSANDRA_SETUP_KWARGS', {})
-
-        if not self._hosts_ and self._keyspace_:
-            raise NoConfig("""No Configuration options defined.
-            At least CASSANDRA_HOSTS and CASSANDRA_CONSISTENCY
-            must be supplied""")
         connection.setup(self._hosts_,
                          self._keyspace_,
                          consistency=consistency,
